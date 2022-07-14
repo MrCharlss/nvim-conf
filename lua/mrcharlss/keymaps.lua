@@ -1,18 +1,14 @@
--- Shorten function name
-local function keymap(mode, lhs, rhs, opts)
-    local options = {noremap = true, silent = true}
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local opts = { noremap = true, silent = true }
 
-local opts = {}
+local term_opts = { silent = true }
+
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
+keymap("", " ", "<Nop>", opts)
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -23,7 +19,6 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
--- testing
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -37,8 +32,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
---keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n","<Leader>h",":bdelete<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
@@ -64,29 +59,35 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-keymap("n", "<leader>c", ":bdelete!<CR>", opts)
-keymap("n","<leader>e", ":Explore<CR>", opts)
-keymap("n", "<space>hh", ":nohlsearch<CR>", opts)
---keymap("n", "FF","<cmd>lua print('hello')<CR>", opts)
-keymap("n", "<leader>gt", [[<Cmd> Telescope git_status <CR>]], opts)
+-- Open Explore
+keymap("n", "<space>e", ":Explore<CR>", opts)
 
---keymap("n", "<space>f",":lua require('telescope')builtin.find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", opts)
---  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
---  ["w"] = { "<cmd>w!<CR>", "Save" },
---  ["q"] = { "<cmd>q!<CR>", "Quit" },
---  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-----  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
---  ["f"] = {
---    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
---    "Find files",
---  },
---  ["F"] = { "<cmd>Telescope live_grep hidden_files = true theme=ivy<cr>", "Find Text" },
---  ["FF"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
---  ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+-- Telescope
+keymap("n", "<space>f", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<space>pd", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+keymap("n", "<space>pr", "<cmd>Telescope lsp_references<CR>", opts)
+keymap("n", "<space>fg", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<space>uuuu", "<cmd>Telescope lsp_document_diagnostics<cr>", opts)
+keymap("n", "<space>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+
+keymap("n", "<space>w", "<cmd>bdelete!<CR>", opts)
+keymap("n", "<space>h", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+
+keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+keymap("n", "<space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
+keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opts)
+
+vim.api.nvim_set_keymap(
+    "n",
+    "<m-f>",
+    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    opts
+)
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
