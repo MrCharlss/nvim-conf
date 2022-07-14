@@ -63,8 +63,8 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<space>e", ":Explore<CR>", opts)
 
 -- Telescope
-keymap("n", "<space>f", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<space>pd", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+keymap("n", "<space>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<space>pd", "<cmd>Telescope lsp_type_definitions<CR>", opts) --revisar
 keymap("n", "<space>pr", "<cmd>Telescope lsp_references<CR>", opts)
 keymap("n", "<space>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<space>uuuu", "<cmd>Telescope lsp_document_diagnostics<cr>", opts)
@@ -79,12 +79,6 @@ keymap("n", "<space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opts)
 
-vim.api.nvim_set_keymap(
-    "n",
-    "<m-f>",
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    opts
-)
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
