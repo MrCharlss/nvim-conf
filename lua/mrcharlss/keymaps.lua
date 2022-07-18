@@ -79,9 +79,9 @@ keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op
 keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)
 keymap("n", "<space>dd", "<cmd>lua require'dap'.continue()<cr>",opts)
 keymap("n", "<space>dq", "<cmd>DapTerminate<cr>",opts)
+
 -- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("n","<C-\\>", "<cmd>ToggleTerm direction=float<cr>", opts)
+keymap("n","<space>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", opts)
+keymap("n","<space>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", opts)
+keymap("n","<space>gg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", opts)

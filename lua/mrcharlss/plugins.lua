@@ -79,7 +79,6 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope.nvim"
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use "nvim-telescope/telescope-dap.nvim"
-    -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
 
     -- Treesitter
@@ -95,10 +94,14 @@ return packer.startup(function(use)
 
     --Debug
     use 'mfussenegger/nvim-dap'
-    use {"Pocco81/DAPInstall.nvim", branch = 'dev'}
+    use { "Pocco81/DAPInstall.nvim", branch = 'dev' }
     use "theHamsta/nvim-dap-virtual-text"
     use "rcarriga/nvim-dap-ui"
 
+    --Terminal
+    use "akinsho/toggleterm.nvim"
+
+    -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

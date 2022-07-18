@@ -13,5 +13,6 @@ require "mrcharlss.lsp"
 require "mrcharlss.keymaps"
 require "mrcharlss.bufferline"
 require "mrcharlss.dap"
+require "mrcharlss.toggleterm"
 
 
