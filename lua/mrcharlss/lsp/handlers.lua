@@ -75,15 +75,20 @@ local function lsp_keymaps(bufnr)
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync(nil, 10000)' ]]
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting_sync(nil, 10000)<cr>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>lF", "<cmd>lua vim.lsp.buf.range_formatting()<cr>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+
 end
 
 M.on_attach = function(client, bufnr)
 -- vim.notify(client.name .. " starting...")
 -- TODO: refactor this into a method that checks if string in list
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
+  -- if client.name == "tsserver" then
+  --   client.resolved_capabilities.document_formatting = false
+  -- end
   --if client.name == "gopls" then
    -- client.resolved_capabilities.document_formatting = false
   --end

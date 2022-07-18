@@ -64,7 +64,7 @@ keymap("n", "<space>e", ":Explore<CR>", opts)
 
 -- Telescope
 keymap("n", "<space>ff", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<space>pd", "<cmd>Telescope lsp_type_definitions<CR>", opts) --revisar
+keymap("n", "<space>pd", "<cmd>Telescope lsp_definitions<CR>", opts) --revisar
 keymap("n", "<space>pr", "<cmd>Telescope lsp_references<CR>", opts)
 keymap("n", "<space>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<space>uuuu", "<cmd>Telescope lsp_document_diagnostics<cr>", opts)
@@ -72,13 +72,13 @@ keymap("n", "<space>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 keymap("n", "<space>w", "<cmd>bdelete!<CR>", opts)
 keymap("n", "<space>h", "<cmd>nohlsearch<CR>", opts)
-keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-
-keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
-keymap("n", "<space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opts)
 
+-- Debugger
+keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)
+keymap("n", "<space>dd", "<cmd>lua require'dap'.continue()<cr>",opts)
+keymap("n", "<space>dq", "<cmd>DapTerminate<cr>",opts)
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)

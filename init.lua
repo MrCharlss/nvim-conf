@@ -12,5 +12,6 @@ require "mrcharlss.comment"
 require "mrcharlss.lsp"
 require "mrcharlss.keymaps"
 require "mrcharlss.bufferline"
+require "mrcharlss.dap"
 
 
