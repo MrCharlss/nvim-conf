@@ -62,11 +62,12 @@ dap.configurations.javascript = {
     name = 'Launch',
     type = 'node2',
     request = 'launch',
-    program = '${file}',
+    program = '${workspaceFolder}/lib/app.js',
     cwd = vim.loop.cwd(),
     sourceMaps = true,
     protocol = 'inspector',
     console = 'integratedTerminal',
+    outFiles= "${workspaceFolder}/lib/**/*.js",
   },
   {
     -- For this to work you need to make sure the node process is started with the `--inspect` flag.

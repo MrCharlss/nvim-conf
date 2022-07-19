@@ -77,7 +77,7 @@ keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op
 
 -- Debugger
 keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)
-keymap("n", "<space>dd", "<cmd>lua require'dap'.continue()<cr>",opts)
+keymap("n", "<space>dd", "<cmd>Telescope dap configurations<CR>",opts)
 keymap("n", "<space>dq", "<cmd>DapTerminate<cr>",opts)
 
 -- Terminal --
