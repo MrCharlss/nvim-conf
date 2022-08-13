@@ -79,6 +79,10 @@ keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op
 keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)
 keymap("n", "<space>dd", "<cmd>Telescope dap configurations<CR>",opts)
 keymap("n", "<space>dq", "<cmd>DapTerminate<cr>",opts)
+keymap("n", "<space>dn", "<cmd>lua require'dap'.step_over()<cr>",opts)
+keymap("n", "<space>di", "<cmd>lua require'dap'.step_into()<cr>",opts)
+keymap("n", "<space>do", "<cmd>lua require'dap'.step_out()<cr>",opts)
+keymap("n", "<space>dc", "<cmd>lua require'dap'.continue()<cr>",opts)
 
 -- Terminal --
 keymap("n","<C-\\>", "<cmd>ToggleTerm direction=float<cr>", opts)
