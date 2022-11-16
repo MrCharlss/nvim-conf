@@ -55,7 +55,7 @@ return packer.startup(function(use)
     use { "ellisonleao/gruvbox.nvim" }
 
     --Bufferline
-    use "akinsho/bufferline.nvim"
+    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin

@@ -55,6 +55,14 @@ end
 --             '/vscode-node-debug2/out/src/nodeDebug.js'
 --     }
 -- }
+dap.adapters.chrome = {
+    type = 'executable',
+    command = 'node',
+    args = {
+        vim.fn.stdpath("data") .. "/dapinstall/jsnode/" ..
+            '/vscode-node-debug2/out/src/nodeDebug.js'
+    }
+}
 dap.adapters.typescript = {
     type = 'executable',
     command = 'node',
@@ -91,7 +99,18 @@ dap.configurations.javascript = {
         type = 'node2',
         request = 'attach',
         processId = require 'dap.utils'.pick_process,
-    },
+    },{
+        name = 'Launch',
+        type = 'node2',
+        request = 'launch',
+        program = '${workspaceFolder}/index.js',
+        cwd = vim.loop.cwd(),
+        sourceMaps = true,
+        protocol = 'inspector',
+        console = 'integratedTerminal',
+        -- outFiles = { "${workspaceFolder}/lib/**/*.js" },
+        -- env = { NODE_ENV = 'localhost' },
+    }
 }
 require("nvim-dap-virtual-text").setup()
 require("dapui").setup({
@@ -105,16 +124,16 @@ require("dapui").setup({
     repl = "r",
     toggle = "t",
   },
-  -- Expand lines larger than the window
-  -- Requires >= 0.7
+--   -- Expand lines larger than the window
+--   -- Requires >= 0.7
   expand_lines = vim.fn.has("nvim-0.7"),
-  -- Layouts define sections of the screen to place windows.
-  -- The position can be "left", "right", "top" or "bottom".
-  -- The size specifies the height/width depending on position. It can be an Int
-  -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
-  -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
-  -- Elements are the elements shown in the layout (in order).
-  -- Layouts are opened in order so that earlier layouts take priority in window sizing.
+--   -- Layouts define sections of the screen to place windows.
+--   -- The position can be "left", "right", "top" or "bottom".
+--   -- The size specifies the height/width depending on position. It can be an Int
+--   -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
+--   -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
+--   -- Elements are the elements shown in the layout (in order).
+--   -- Layouts are opened in order so that earlier layouts take priority in window sizing.
   layouts = {
     {
       elements = {
@@ -159,4 +178,5 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
+
 require('dap.ext.vscode').load_launchjs(nil, { node2 = { 'javascript', 'typescript' } })
