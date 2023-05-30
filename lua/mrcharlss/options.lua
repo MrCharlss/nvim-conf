@@ -1,3 +1,4 @@
+vim.o.relativenumber = true
 vim.o.ma = true
 vim.o.mouse = a
 vim.o.cursorline = true
@@ -15,3 +16,7 @@ vim.o.swapfile = false
 -- use y and p with the system clipboard
 vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
+vim.opt.list = true
+vim.opt.listchars:append "space:⋅"
+vim.opt.listchars:append "eol:↴"
+

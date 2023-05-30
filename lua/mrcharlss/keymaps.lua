@@ -71,9 +71,9 @@ keymap("n", "<space>uuuu", "<cmd>Telescope lsp_document_diagnostics<cr>", opts)
 keymap("n", "<space>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 
 keymap("n", "<space>w", "<cmd>bdelete!<CR>", opts)
-keymap("n", "<space>h", "<cmd>nohlsearch<CR>", opts)
-keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
-keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", opts)
+keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
+keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
 -- Debugger
 keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)

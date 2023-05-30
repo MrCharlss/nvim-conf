@@ -47,6 +47,20 @@ dap.adapters.node2 = function(cb, config)
     cb(adapter)
 end
 
+dap.adapters.node = function(cb, config)
+    if config.preLaunchTask then
+        vim.fn.system(config.preLaunchTask)
+    end
+    local adapter = {
+        type = 'executable',
+        command = 'node',
+        args = {
+            vim.fn.stdpath("data") .. "/dapinstall/jsnode/" ..
+                '/vscode-node-debug2/out/src/nodeDebug.js'
+        }
+    }
+    cb(adapter)
+end
 -- dap.adapters.node2 = {
 --     type = 'executable',
 --     command = 'node',
