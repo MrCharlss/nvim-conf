@@ -129,6 +129,11 @@ return packer.startup(function(use)
 
     -- BlankLine
     use { "lukas-reineke/indent-blankline.nvim" }
+
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+}
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()
