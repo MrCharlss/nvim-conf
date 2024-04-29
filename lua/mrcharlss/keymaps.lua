@@ -76,16 +76,17 @@ keymap("n", "<space>/", "<cmd>lua require('Comment.api').toggle.linewise.current
 keymap("v", "<space>/", "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
 -- Debugger
-keymap("n", "<space>dt","<cmd>lua require'dap'.toggle_breakpoint()<cr>",opts)
-keymap("n", "<space>dd", "<cmd>Telescope dap configurations<CR>",opts)
-keymap("n", "<space>dq", "<cmd>DapTerminate<cr>",opts)
-keymap("n", "<space>dn", "<cmd>lua require'dap'.step_over()<cr>",opts)
-keymap("n", "<space>di", "<cmd>lua require'dap'.step_into()<cr>",opts)
-keymap("n", "<space>do", "<cmd>lua require'dap'.step_out()<cr>",opts)
-keymap("n", "<space>dc", "<cmd>lua require'dap'.continue()<cr>",opts)
+keymap("n", "<space>dt", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<space>dd", "<cmd>Telescope dap configurations<CR>", opts)
+keymap("n", "<space>dq", "<cmd>DapTerminate<cr>", opts)
+keymap("n", "<space>dn", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<space>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<space>do", "<cmd>lua require'dap'.step_out()<cr>", opts)
+keymap("n", "<space>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 
 -- Terminal --
-keymap("n","<C-\\>", "<cmd>ToggleTerm direction=float<cr>", opts)
-keymap("n","<space>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", opts)
-keymap("n","<space>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", opts)
-keymap("n","<space>gg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", opts)
+keymap("n", "<C-\\>", "<cmd>ToggleTerm direction=float<cr>", opts)
+keymap("n", "<space>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", opts)
+keymap("n", "<space>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", opts)
+keymap("n", "<space>gg", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", opts)
+

@@ -1,6 +1,6 @@
 
 require('nvim-treesitter.configs').setup {
-	ensure_installed = { "typescript", "go", "javascript", "lua", "json" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ensure_installed = { "typescript", "go", "javascript", "lua", "json", "templ"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	--  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 	ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
 	autopairs = {
@@ -8,7 +8,6 @@ require('nvim-treesitter.configs').setup {
 	},
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "" }, -- list of language that will be disabled
 		additional_vim_regex_highlighting = true,
 		use_languagetree = true,
 	},

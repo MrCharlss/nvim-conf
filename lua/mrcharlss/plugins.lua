@@ -41,11 +41,11 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     -- plugins here:
-    use {"wbthomason/packer.nvim"} -- Have packer manage itself
-    use { "nvim-lua/popup.nvim" } -- An implementation of the Popup API from vim in Neovim
-    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used ny lots of plugins
+    use { "wbthomason/packer.nvim" } -- Have packer manage itself
+    use { "nvim-lua/popup.nvim" }    -- An implementation of the Popup API from vim in Neovim
+    use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used ny lots of plugins
 
-    use { "neovim/nvim-lspconfig" } -- enable LSP
+    use { "neovim/nvim-lspconfig" }  -- enable LSP
     use { "lewis6991/impatient.nvim" }
 
     --Color Schemeplu
@@ -55,38 +55,38 @@ return packer.startup(function(use)
     use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" }
 
     -- load luasnips + cmp related in insert mode only
-            use {
-                -- snippet plugin
-                "L3MON4D3/LuaSnip",
-                requires = "rafamadriz/friendly-snippets",
-            }
+    use {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        requires = "rafamadriz/friendly-snippets",
+    }
 
-            use {
-                "saadparwaiz1/cmp_luasnip",
-                "hrsh7th/cmp-nvim-lua",
-                "hrsh7th/cmp-nvim-lsp",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-path",
-            }
-            use {
-                "windwp/nvim-autopairs",
-            }
+    use {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+    }
+    use {
+        "windwp/nvim-autopairs",
+    }
     use {
         "hrsh7th/nvim-cmp",
         -- event = "InsertEnter",
         -- dependencies = {
 
-            -- cmp sources plugins
+        -- cmp sources plugins
         -- },
-            -- opts = function()
-            --     return require("mrcharlss.cmp")
-            -- end,
-            -- config = function(_,opts)
-            --     require("cmp").setup(opts)
-            -- end
+        -- opts = function()
+        --     return require("mrcharlss.cmp")
+        -- end,
+        -- config = function(_,opts)
+        --     require("cmp").setup(opts)
+        -- end
     }
 
-            -- autopairing of (){}[] etc
+    -- autopairing of (){}[] etc
     -- LSP
     use {
         "williamboman/mason.nvim",
@@ -106,7 +106,7 @@ return packer.startup(function(use)
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use { "nvim-telescope/telescope-dap.nvim" }
 
-  use {'ThePrimeagen/harpoon'}
+    use { 'ThePrimeagen/harpoon' }
     -- Treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -130,10 +130,38 @@ return packer.startup(function(use)
     -- BlankLine
     use { "lukas-reineke/indent-blankline.nvim" }
 
-use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-}
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- codium
+    use {
+        'Exafunction/codeium.vim',
+        config = function()
+            -- Change '<C-g>' here to any keycode you like.
+            vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+            vim.keymap.set('i', '<space>,', function() return vim.fn['codeium#CycleCompletions'](1) end,
+                { expr = true, silent = true })
+            vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+                { expr = true, silent = true })
+            vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+        end
+    }
+    use { 'vimwiki/vimwiki',
+        config = function()
+            vim.g.vimwiki_list = {
+                {
+                    path = '~/vimwiki',
+                    syntax = 'markdown',
+                    ext = '.md'
+                }
+            }
+        end
+    }
+    --TODO:review and finish configuring...
+    -- use { 'junegunn/fzf' }
+    -- use { 'junegunn/fzf.vim' }
+    -- use { 'michal-h21/vim-zettel' }
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

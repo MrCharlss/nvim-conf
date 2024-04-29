@@ -1,7 +1,8 @@
 local lspconfig = require("lspconfig")
-local servers = { "html", "cssls", "tsserver", "tailwindcss", "gopls", "lua_ls" }
+local servers = { "html", "cssls", "tsserver", "tailwindcss", "gopls", "lua_ls", "svelte", "templ"}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+vim.filetype.add({extension = {templ = "templ"}})
 
 capabilities.textDocument.completion.completionItem = {
     documentationFormat = { "markdown", "plaintext" },
@@ -100,3 +101,14 @@ for _, lsp in ipairs(servers) do
         capabilities = capabilities,
     })
 end
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
+lspconfig.htmx.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
+
